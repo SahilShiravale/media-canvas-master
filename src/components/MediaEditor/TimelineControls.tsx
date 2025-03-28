@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Play, Pause, RotateCcw } from 'lucide-react';
+import { Play, Pause, RotateCcw, SkipBack, SkipForward } from 'lucide-react';
 
 interface TimelineControlsProps {
   currentTime: number;
@@ -25,10 +25,19 @@ const TimelineControls: React.FC<TimelineControlsProps> = ({
   return (
     <div className="flex items-center space-x-4">
       <Button
+        variant="outline"
+        size="sm"
+        onClick={resetTimer}
+        className="bg-white border-gray-300 text-gray-700 hover:bg-gray-100 h-8 w-8 p-0"
+      >
+        <SkipBack className="h-4 w-4" />
+      </Button>
+      
+      <Button
         onClick={togglePlay}
         variant="outline"
         size="sm"
-        className="bg-editor-sidebar border-gray-700 text-white hover:bg-gray-700"
+        className="bg-white border-gray-300 text-gray-700 hover:bg-gray-100 h-8 w-8 p-0"
       >
         {isPlaying ? (
           <Pause className="h-4 w-4" />
@@ -38,16 +47,16 @@ const TimelineControls: React.FC<TimelineControlsProps> = ({
       </Button>
       
       <Button
-        onClick={resetTimer}
         variant="outline"
         size="sm"
-        className="bg-editor-sidebar border-gray-700 text-white hover:bg-gray-700"
+        disabled
+        className="bg-white border-gray-300 text-gray-700 hover:bg-gray-100 h-8 w-8 p-0"
       >
-        <RotateCcw className="h-4 w-4" />
+        <SkipForward className="h-4 w-4" />
       </Button>
       
-      <div className="bg-gray-800 px-3 py-1 rounded text-sm">
-        {formatTime(currentTime)}
+      <div className="bg-white px-3 py-1 rounded text-sm border border-gray-300">
+        {formatTime(currentTime)} / 01:00:0
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ import MediaUpload from './MediaUpload';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
-import { Trash } from 'lucide-react';
+import { Trash, Upload, Video, Headphones, FileText, Square, Settings } from 'lucide-react';
 
 const Sidebar: React.FC = () => {
   const { selectedMediaId } = useMediaContext();
@@ -46,16 +46,25 @@ const Sidebar: React.FC = () => {
 
   return (
     <div className="editor-sidebar">
-      <h2 className="text-xl font-bold mb-6">Media Editor</h2>
+      <h2 className="veed-sidebar-title">Add Media</h2>
       
       <MediaUpload />
       
+      <div className="flex flex-col space-y-4 mt-8">
+        <SidebarItem icon={<Video size={18} />} label="Video" />
+        <SidebarItem icon={<Headphones size={18} />} label="Audio" />
+        <SidebarItem icon={<FileText size={18} />} label="Subtitles" />
+        <SidebarItem icon={<Square size={18} />} label="Text" />
+        <SidebarItem icon={<Square size={18} />} label="Elements" />
+        <SidebarItem icon={<Settings size={18} />} label="Settings" />
+      </div>
+      
       {selectedMedia ? (
-        <div className="mt-4">
+        <div className="mt-8 border-t border-gray-200 pt-6">
           <h3 className="text-lg font-semibold mb-4">Media Properties</h3>
           
-          <div className="bg-gray-800 p-4 rounded-md mb-4">
-            <h4 className="text-sm font-medium mb-3 text-gray-300">Dimensions</h4>
+          <div className="bg-gray-50 p-4 rounded-md mb-4">
+            <h4 className="text-sm font-medium mb-3 text-gray-700">Dimensions</h4>
             <div className="grid grid-cols-2 gap-3">
               <DimensionInput 
                 label="Width" 
@@ -70,7 +79,7 @@ const Sidebar: React.FC = () => {
             </div>
             
             <div className="flex items-center justify-between mt-3">
-              <Label htmlFor="aspect-ratio" className="text-sm text-gray-300">Maintain aspect ratio</Label>
+              <Label htmlFor="aspect-ratio" className="text-sm text-gray-700">Maintain aspect ratio</Label>
               <Switch 
                 id="aspect-ratio"
                 checked={selectedMedia.maintainAspectRatio}
@@ -79,8 +88,8 @@ const Sidebar: React.FC = () => {
             </div>
           </div>
           
-          <div className="bg-gray-800 p-4 rounded-md mb-4">
-            <h4 className="text-sm font-medium mb-3 text-gray-300">Timeline</h4>
+          <div className="bg-gray-50 p-4 rounded-md mb-4">
+            <h4 className="text-sm font-medium mb-3 text-gray-700">Timeline</h4>
             <div className="grid grid-cols-2 gap-3">
               <TimeInput 
                 label="Start Time (s)" 
@@ -104,11 +113,16 @@ const Sidebar: React.FC = () => {
             Remove Media
           </Button>
         </div>
-      ) : (
-        <div className="text-gray-400 text-center mt-8">
-          <p>Upload media or select an item to edit its properties</p>
-        </div>
-      )}
+      ) : null}
+    </div>
+  );
+};
+
+const SidebarItem: React.FC<{ icon: React.ReactNode; label: string }> = ({ icon, label }) => {
+  return (
+    <div className="flex items-center space-x-2 text-gray-600 cursor-pointer hover:text-indigo-600 transition-colors py-2">
+      <div className="text-gray-500">{icon}</div>
+      <span className="text-sm">{label}</span>
     </div>
   );
 };

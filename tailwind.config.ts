@@ -54,11 +54,11 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				editor: {
-					DEFAULT: '#1E1E2E',
-					sidebar: '#252538',
+					DEFAULT: '#FFFFFF',
+					sidebar: '#FFFFFF',
 					canvas: '#18181A',
-					purple: '#8B5CF6',
-					highlight: '#9b87f5',
+					purple: '#4F46E5',
+					highlight: '#6366F1',
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',

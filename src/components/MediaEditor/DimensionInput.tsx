@@ -28,7 +28,7 @@ const DimensionInput: React.FC<DimensionInputProps> = ({
         onChange={handleChange}
         min={min}
         max={max}
-        className="bg-gray-800 border-gray-700 text-white"
+        className="bg-white border-gray-300 text-gray-800"
       />
     </div>
   );
