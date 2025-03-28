@@ -1,13 +1,42 @@
-// Update this page (the content is just a fallback if you fail to update the page)
 
-const Index = () => {
+import React from 'react';
+import { MediaProvider } from '@/context/MediaContext';
+import Sidebar from '@/components/MediaEditor/Sidebar';
+import Canvas from '@/components/MediaEditor/Canvas';
+import TimelineControls from '@/components/MediaEditor/TimelineControls';
+import { useMediaContext } from '@/context/MediaContext';
+
+const EditorInterface: React.FC = () => {
+  const { currentTime, isPlaying, togglePlay, resetTimer } = useMediaContext();
+  
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="media-editor">
+      <header className="editor-header">
+        <h1 className="text-xl font-bold">Media Canvas Master</h1>
+        <TimelineControls 
+          currentTime={currentTime}
+          isPlaying={isPlaying}
+          togglePlay={togglePlay}
+          resetTimer={resetTimer}
+        />
+      </header>
+      
+      <main className="editor-main">
+        <Sidebar />
+        
+        <div className="editor-canvas-container">
+          <Canvas />
+        </div>
+      </main>
     </div>
+  );
+};
+
+const Index: React.FC = () => {
+  return (
+    <MediaProvider>
+      <EditorInterface />
+    </MediaProvider>
   );
 };
 

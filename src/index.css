@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,19 +36,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -96,6 +90,56 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-editor text-foreground;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer components {
+  .media-editor {
+    @apply min-h-screen flex flex-col;
+  }
+
+  .editor-header {
+    @apply bg-editor-sidebar text-white h-14 border-b border-gray-800 flex items-center px-4 justify-between;
+  }
+
+  .editor-main {
+    @apply flex flex-1 overflow-hidden;
+  }
+
+  .editor-sidebar {
+    @apply bg-editor-sidebar text-white w-72 p-4 border-r border-gray-800 flex flex-col overflow-auto;
+  }
+
+  .editor-canvas-container {
+    @apply flex-1 flex flex-col bg-editor-canvas overflow-hidden;
+  }
+
+  .editor-canvas {
+    @apply flex-1 relative overflow-hidden;
+  }
+
+  .editor-timeline {
+    @apply bg-editor-sidebar border-t border-gray-800 h-20 text-white px-4 py-2;
+  }
+
+  .drop-indicator {
+    @apply border-2 border-dashed border-editor-purple rounded-md p-6 text-center text-gray-400 flex flex-col items-center justify-center;
+  }
+  
+  .input-group {
+    @apply mb-4;
+  }
+  
+  .input-label {
+    @apply block text-sm font-medium text-gray-300 mb-1;
+  }
+
+  .media-container {
+    position: absolute;
+    transform-origin: center;
+    cursor: move;
   }
 }
